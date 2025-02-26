@@ -4,9 +4,21 @@ import { AuthContext } from './AuthProvider';
 
 function ProfileScreen() {
 
+    const {user, logout} = useContext(AuthContext);
+
+    if(!user){
+        return <Text>Please log in.</Text>;
+    }
+
+
+
   return (
     <View style={styles.container}>
-     <View style={styles.text}></View>
+     <View style={styles.text}>
+        <Text>Welcome, {user.username}!</Text>
+        <Text>Email: {user.email}</Text>
+        <Button title="logout" onPress={logout} />
+     </View>
     </View>
   );
 }
